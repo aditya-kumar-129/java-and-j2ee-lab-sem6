@@ -1,4 +1,4 @@
-package Book;
+package BookList;
 
 import java.util.Scanner;
 import java.util.ArrayList;
