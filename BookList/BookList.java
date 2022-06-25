@@ -65,9 +65,13 @@ class BookList {
   void findBookByTitle() {
     System.out.println("Enter title of the book to search in the bookList:- ");
     String title = sc.nextLine();
-    for (Book itr : bookList)
-      if (itr.title.equalsIgnoreCase(title))
+    int entered_titleLength = title.length();
+    for (Book itr : bookList) {
+      int currentBook_titleLength = itr.title.length();
+      if (itr.title.substring(currentBook_titleLength - entered_titleLength, currentBook_titleLength)
+          .equalsIgnoreCase(title))
         System.out.println(itr);
+    }
   }
 
   void SortBookByPrice(double query_Price) {
