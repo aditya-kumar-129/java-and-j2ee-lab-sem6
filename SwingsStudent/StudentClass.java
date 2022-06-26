@@ -1,4 +1,4 @@
-package q3;
+package SwingsStudent;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -47,7 +47,7 @@ public class StudentClass implements ActionListener {
   JTextField sgpa8 = new JTextField(10);
   JTextField cgpa = new JTextField(10);
 
-  JButton submit = new JButton("Submit");
+  JButton compute = new JButton("Submit");
   JButton display = new JButton("display");
   JButton done = new JButton("done");
 
@@ -78,7 +78,7 @@ public class StudentClass implements ActionListener {
     f1.add(SGPA7);       f1.add(sgpa7);
     f1.add(SGPA8);       f1.add(sgpa8);
     f1.add(CGPA);        f1.add(cgpa);
-    f1.add(submit);      f1.add(display);      f1.add(done);
+    f1.add(compute);     f1.add(display);      f1.add(done);
 
     f2.add(stud_list_display);
 
@@ -86,13 +86,17 @@ public class StudentClass implements ActionListener {
     f1.setLayout(new GridLayout(8, 8));
     f1.setVisible(true);
 
-    submit.addActionListener(this);
+    // Display appropriate messages in pop up boxes to indicate wrong entries, on
+    // clicking of the “compute” button.
+    compute.addActionListener(this);
+    // A click on the “display” button should display the collection in a textarea.
     display.addActionListener(this);
+    // On clicking of the “done” button, place the student details in a collection.
     done.addActionListener(this);
   }
 
   public void actionPerformed(ActionEvent event) {
-    if (event.getSource() == "submit") {
+    if (event.getSource() == "compute") {
       try {
         int entered_user_age = Integer.parseInt(age.getText());
         if (entered_user_age < 18 || entered_user_age > 35) {
@@ -114,12 +118,13 @@ public class StudentClass implements ActionListener {
       float calculated_cgpa = calculateCGPA();
       cgpa.setText(Float.toString(calculated_cgpa));
     } 
-    else if (event.getSource() == "display") {
+    else if (event.getSource() == "done") {
       Student newStudentObject = new Student(name.getText(), usn.getText(), address.getText(),
           String.valueOf(category.getSelectedItem()),
           Integer.parseInt(age.getText()), Float.parseFloat(cgpa.getText()));
       studentList.add(newStudentObject);
     } 
+    // getSource() === 'display'
     else {
       f1.setVisible(false);
       f2.setVisible(true);

@@ -1,9 +1,8 @@
-package q3;
+package SwingsStudent;
 
 public class Student {
   String name, usn, address, category;
   int age;
-  // float sgpa1,sgpa2,sgpa3,sgpa4,sgpa5,sgpa6,sgpa7,sgpa8;
   float cgpa;
 
   public Student(String name, String usn, String address, String category, int age, float cgpa) {
