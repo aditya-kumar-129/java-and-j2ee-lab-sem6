@@ -56,7 +56,7 @@ public class Customer implements ActionListener {
 
       try {
         if (Integer.parseInt(entered_customer_credit_limit) > 15000) {
-          String sql1 = "select * from rep where REPRESENTATIVE_NO = ?";
+          String sql1 = "select * from representative where representativeNumber = ?";
           PreparedStatement st1 = connection.c.prepareStatement(sql1);
           st1.setString(1, entered_representative_no);
           ResultSet res = st1.executeQuery();
