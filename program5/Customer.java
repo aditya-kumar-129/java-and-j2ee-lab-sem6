@@ -1,8 +1,8 @@
 package program5;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,12 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
+import java.sql.*;
 
 public class Customer implements ActionListener {
-
+  JFrame f1 = new JFrame("Customer");
   JLabel CUSTOMER_NO = new JLabel("Enter Customer Number:- ");
   JLabel CUSTOMER_NAME = new JLabel("Enter Customer Name :- ");
   JLabel CUSTOMER_STATE = new JLabel("Enter Customer State at which he lives :- ");
@@ -28,16 +26,14 @@ public class Customer implements ActionListener {
   JTextField customer_credit_limit = new JTextField(10);
   JTextField representative_no = new JTextField(10);
 
-  JFrame f1 = new JFrame("Customer");
-
   JButton submit = new JButton("ADD");
 
   Customer() {
-    f1.add(CUSTOMER_NO);                f1.add(customer_no);
-    f1.add(CUSTOMER_NAME);              f1.add(customer_name);
-    f1.add(CUSTOMER_STATE);             f1.add(customer_state);
-    f1.add(CUSTOMER_CREDIT_LIMIT);      f1.add(customer_credit_limit);
-    f1.add(REPRESENTATIVE_NO);          f1.add(representative_no);
+    f1.add(CUSTOMER_NO);              f1.add(customer_no);
+    f1.add(CUSTOMER_NAME);            f1.add(customer_name);
+    f1.add(CUSTOMER_STATE);           f1.add(customer_state);
+    f1.add(CUSTOMER_CREDIT_LIMIT);    f1.add(customer_credit_limit);
+    f1.add(REPRESENTATIVE_NO);        f1.add(representative_no);
     f1.add(submit);
 
     f1.setSize(800, 600);
@@ -46,8 +42,8 @@ public class Customer implements ActionListener {
     submit.addActionListener(this);
   }
 
-  public void actionPerformed(ActionEvent e) {
-    if (e.getSource() == submit) {
+  public void actionPerformed(ActionEvent event) {
+    if (event.getSource() == submit) {
       String entered_customer_name = customer_name.getText();
       String entered_customer_number = customer_no.getText();
       String entered_customer_state = customer_state.getText();
@@ -56,25 +52,24 @@ public class Customer implements ActionListener {
 
       try {
         if (Integer.parseInt(entered_customer_credit_limit) > 15000) {
-          String sql1 = "select * from representative where representativeNumber = ?";
+          String sql1 = "select * from customer where RepresentativeNumber = ?";
           PreparedStatement st1 = connection.c.prepareStatement(sql1);
           st1.setString(1, entered_representative_no);
           ResultSet res = st1.executeQuery();
-          while (res.next()) {
-            JOptionPane.showMessageDialog(null, "CL>15000\nNAME:" + res.getString("repname"));
-          }
+          while (res.next())
+            JOptionPane.showMessageDialog(null, "Credit Limit >15000 \nNAME:" + res.getString("representativeName"));
         }
-        String sql = "insert into customer(customerNumber,customerName,customerState,customerCreditLimit,RepresentativeNumber) values(?,?,?,?,?)";
-        PreparedStatement st;
-        st = connection.c.prepareStatement(sql);
+
+        String sql = "insert into customer values(?,?,?,?,?)";
+        PreparedStatement st = connection.c.prepareStatement(sql);
         st.setString(1, entered_customer_number);
         st.setString(2, entered_customer_name);
         st.setString(3, entered_customer_state);
         st.setString(4, entered_customer_credit_limit);
         st.setString(5, entered_representative_no);
         st.executeUpdate();
-      } catch (Exception e1) {
-        e1.printStackTrace();
+      } catch (Exception e) {
+        e.printStackTrace();
       }
     }
   }
