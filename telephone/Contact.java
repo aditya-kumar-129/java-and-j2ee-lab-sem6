@@ -1,15 +1,15 @@
 package telephone;
 
-public class Contact {
-  long phoneNumber;
+class Contact {
   String name;
+  long phoneNumber;
 
-  public Contact(String name, long phoneNumber) {
+  Contact(String name, long phoneNumber) {
     this.name = name;
     this.phoneNumber = phoneNumber;
   }
 
   public String toString() {
-    return "Name of the customer is :- " + name + ", And his Phone Number is :- " + phoneNumber;
+    return "Contact [name=" + name + ", phoneNumber=" + phoneNumber + "]";
   }
 }

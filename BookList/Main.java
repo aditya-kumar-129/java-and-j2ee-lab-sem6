@@ -8,7 +8,8 @@ public class Main {
     obj.findAuthorBook();
     obj.findBookByPublisherName();
     obj.findBookByTitle();
-    obj.sortBookByPrice();
+    obj.sortBook();
+    obj.SortBookByPrice();
     obj.updatePublisherName();
     obj.display();
   }

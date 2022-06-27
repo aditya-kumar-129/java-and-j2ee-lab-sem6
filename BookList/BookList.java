@@ -29,16 +29,16 @@ class BookList {
     }
   }
 
-  void sortBookByPrice() {
+  void sortBook() {
     ArrayList<Book> copyOfBookList = new ArrayList<>(bookList);
     Collections.sort(copyOfBookList, new Comparator<Book>() {
       public int compare(Book b1, Book b2) {
         if (b1.price > b2.price)
-          return -1;
+          return 1;
         if (b1.price == b2.price)
           return 0;
         else
-          return 1;
+          return -1;
       }
     });
     System.out.println("Sorted BookList is :- ");
@@ -68,14 +68,15 @@ class BookList {
     int entered_titleLength = title.length();
     for (Book itr : bookList) {
       int currentBook_titleLength = itr.title.length();
-      if (itr.title.substring(currentBook_titleLength - entered_titleLength, currentBook_titleLength)
-          .equalsIgnoreCase(title))
+      if (itr.title.substring(currentBook_titleLength - entered_titleLength, currentBook_titleLength).equalsIgnoreCase(title))
         System.out.println(itr);
     }
   }
 
-  void SortBookByPrice(double query_Price) {
+  void SortBookByPrice() {
     ArrayList<Book> groupBookByPrice = new ArrayList<>();
+    System.out.println("Enter the price above which you want all the suggestions:- ");
+    int query_Price = Integer.parseInt(sc.nextLine());
     for (Book itr : bookList)
       if (itr.price > query_Price)
         groupBookByPrice.add(itr);

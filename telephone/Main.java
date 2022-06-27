@@ -2,9 +2,9 @@ package telephone;
 
 public class Main {
   public static void main(String args[]) {
-    ContactList CustomerListObject = new ContactList();
-    CustomerListObject.viewList();
+    ContactList contactListObject = new ContactList();
+    contactListObject.displayCustomer();
     MissedCallList missedCallListObject = new MissedCallList();
-    missedCallListObject.viewLog();
+    missedCallListObject.display();
   }
 }
