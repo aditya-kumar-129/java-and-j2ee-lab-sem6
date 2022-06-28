@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import java.util.ArrayList;
 
-public class StudentClass implements ActionListener {
+public class Main implements ActionListener {
   JLabel NAME = new JLabel("Enter Name of the student :- ");
   JLabel USN = new JLabel("Enter usn of the student :- ");
   JLabel AGE = new JLabel("Enter age of the student :- ");
@@ -58,7 +58,7 @@ public class StudentClass implements ActionListener {
 
   ArrayList<Student> studentList = new ArrayList<>();
 
-  public StudentClass() {
+  public Main() {
     category.addItem("SC");
     category.addItem("ST");
     category.addItem("OBC");
@@ -77,7 +77,7 @@ public class StudentClass implements ActionListener {
     f1.add(SGPA7);       f1.add(sgpa7);
     f1.add(SGPA8);       f1.add(sgpa8);
     f1.add(CGPA);        f1.add(cgpa);
-    f1.add(Add);     f1.add(display);
+    f1.add(Add);         f1.add(display);
 
     f2.add(stud_list_display);
 
@@ -93,13 +93,10 @@ public class StudentClass implements ActionListener {
     if (event.getSource() == Add) {
       try {
         int entered_user_age = Integer.parseInt(age.getText());
-        if (entered_user_age < 18 || entered_user_age > 35) {
-          String age1 = JOptionPane.showInputDialog(null, "Enter valid Age");
-          age.setText(age1);
-        }
+        if (entered_user_age < 18 || entered_user_age > 35)
+          age.setText(JOptionPane.showInputDialog(null, "Enter valid Age"));
       } catch (Exception e) {
         JOptionPane.showMessageDialog(f1, "Invalid entry");
-        age.requestFocus();
       }
       validate_SGPA(1, sgpa1);
       validate_SGPA(2, sgpa2);
@@ -141,18 +138,15 @@ public class StudentClass implements ActionListener {
   void validate_SGPA(int sem, JTextField sgpa) {
     float value_sgpa = Float.parseFloat(sgpa.getText());
     try {
-      if (value_sgpa > 10) {
-        String correct_sgpa = JOptionPane.showInputDialog(null, "Enter an SGPA less than or equal to 10 for sem " + sem);
-        sgpa.setText(correct_sgpa);
-      }
+      if (value_sgpa > 10)
+        sgpa.setText(JOptionPane.showInputDialog(null, "Enter an SGPA less than or equal to 10 for sem " + sem));
     } catch (Exception e) {
       String v2 = JOptionPane.showInputDialog(null, "Please enter SGPA for semester " + sem);
       sgpa.setText(v2);
-      sgpa.requestFocus();
     }
   }
 
   public static void main(String[] args) {
-    new StudentClass();
+    new Main();
   }
 }
