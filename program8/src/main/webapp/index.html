@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> Patient Question for performing CRUD Operation</h1>
+  <p>Insert Operation</p>
+  <form method="get" action="Insert">
+    <label>Patient ID</label>
+    <input type="number" name="patient_id"/>
+    <label>Patient Name</label>
+    <input type="text" name="patient_name"/>
+    <button type="submit">Add Patient</button>
+  </form>
+  <br>
+  <br>
+  <p>Delete Operation</p>
+  <form method="get" action="Delete">
+    <label>Patient ID</label>
+    <input type="number" name="patient_id"/>
+    <button type="submit">Delete Patient</button>
+  </form>
+
+  <br>
+  <br>
+  <p>Update Operation</p>
+  <form method="get" action="Update">
+    <label>Patient ID Whose name has to be updated : </label>
+    <input type="number" name="patient_id"/>
+    <label>Updated Patient Name</label>
+    <input type="text" name="updated_patient_name"/>
+    <button type="submit">Update Patient</button>
+  </form>
+
+  <br>
+  <br>
+  <form method="get" action="View">
+    <button type="submit">View Data</button>
+  </form>
+</body>
+</html>
